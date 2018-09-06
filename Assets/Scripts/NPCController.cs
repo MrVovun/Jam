@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class NPCController : MonoBehaviour {
 	public Canvas myCanvas;
-	public TextMeshProUGUI myText;
+	public TMP_InputField myText;
+	public bool InputFieldOn = false;
 
 	public void EnableCanvas () {
 		myCanvas.gameObject.SetActive (true);
