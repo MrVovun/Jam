@@ -8,15 +8,23 @@ public class PlayerController : MonoBehaviour {
 
 	[SerializeField]
 	private int speed = 5;
+	[SerializeField]
+	private bool canMove = true;
 
 	public bool isInNPC = false;
 	public GameObject thisNPC;
 
 	void Update () {
-		Movement ();
+		if (canMove == true) {
+			Movement ();
+		}
 		if (Input.GetKeyDown (KeyCode.Return) && isInNPC == true) {
 			thisNPC.GetComponent<NPCController> ().myText.ActivateInputField ();
 			thisNPC.GetComponent<NPCController> ().InputFieldOn = true;
+			canMove = false;
+		} else if (Input.GetKeyDown (KeyCode.Escape) && isInNPC == true && thisNPC.GetComponent<NPCController> ().InputFieldOn == true) {
+			DoneWithInput ();
+			canMove = true;
 		}
 	}
 
